@@ -16,7 +16,8 @@ var gsAnalytics = function() {
 
   function initAsPromised() {
     return new Promise(function(resolve) {
-      if (gsStorage.getOption('trackingOptOut')) {
+      // if (gsStorage.getOption('trackingOptOut')) {
+      if (true) {
         gsUtils.log(
           'gsAnalytics',
           'init tracking aborted because tracking is disabled'
@@ -24,9 +25,9 @@ var gsAnalytics = function() {
         resolve();
       }
       try {
-        ga('create', 'UA-167314577-2', 'auto');
-        ga('set', 'checkProtocolTask', function() {});
-        ga('require', 'displayfeatures');
+        // ga('create', 'UA-186918241-1', 'auto');
+        // ga('set', 'checkProtocolTask', function() {});
+        // ga('require', 'displayfeatures');
       } catch (e) {
         gsUtils.warning('gsAnalytics', e);
       }
@@ -36,7 +37,8 @@ var gsAnalytics = function() {
   }
 
   function setUserDimensions() {
-    if (gsStorage.getOption('trackingOptOut')) {
+          // if (gsStorage.getOption('trackingOptOut')) {
+      if (true) {
       gsUtils.log(
         'gsAnalytics',
         'setting dimensions aborted because tracking is disabled'
@@ -54,11 +56,12 @@ var gsAnalytics = function() {
         gsStorage.getOption(gsStorage.DISCARD_AFTER_SUSPEND) + '',
     };
     gsUtils.log('gsAnalytics', 'Setting dimensions', dimensions);
-    ga('set', dimensions);
+    // ga('set', dimensions);
   }
 
   function performStartupReport() {
-    if (gsStorage.getOption('trackingOptOut')) {
+    // if (gsStorage.getOption('trackingOptOut'))) {
+    if (true) {
       gsUtils.log(
         'gsAnalytics',
         'perfomStartupReport aborted because tracking is disabled'
@@ -85,11 +88,12 @@ var gsAnalytics = function() {
       metrics[METRIC_TAB_RECOVER_TIME_TAKEN] = recoveryTimeTaken;
     }
     gsUtils.log('gsAnalytics', 'Event: ', category, action, metrics);
-    ga('send', 'event', category, action, metrics);
+    // ga('send', 'event', category, action, metrics);
   }
 
   function performVersionReport() {
-    if (gsStorage.getOption('trackingOptOut')) {
+    // if (gsStorage.getOption('trackingOptOut'))) {
+    if (true) {
       gsUtils.log(
         'gsAnalytics',
         'performVersionReport aborted because tracking is disabled'
@@ -111,11 +115,12 @@ var gsAnalytics = function() {
         : curVersion;
 
     gsUtils.log('gsAnalytics', 'Event: ', category, action, label);
-    ga('send', 'event', category, action, label);
+    // ga('send', 'event', category, action, label);
   }
 
   function performPingReport() {
-    if (gsStorage.getOption('trackingOptOut')) {
+    // if (gsStorage.getOption('trackingOptOut')) ) {
+    if (true) {
       gsUtils.log(
         'gsAnalytics',
         'performPingReport aborted because tracking is disabled'
@@ -134,41 +139,44 @@ var gsAnalytics = function() {
         sessionMetrics[gsStorage.SM_TOTAL_TAB_COUNT];
     }
     gsUtils.log('gsAnalytics', 'Event: ', category, action, metrics);
-    ga('send', 'event', category, action, metrics);
+    // ga('send', 'event', category, action, metrics);
   }
 
   function reportPageView(pageName) {
-    if (gsStorage.getOption('trackingOptOut')) {
+      // if (gsStorage.getOption('trackingOptOut')) {
+      if (true) {
       gsUtils.log(
         'gsAnalytics',
         'reportPageView aborted because tracking is disabled'
       );
       return;
     }
-    ga('send', 'pageview', pageName);
+    // ga('send', 'pageview', pageName);
   }
   function reportEvent(category, action, label) {
-    if (gsStorage.getOption('trackingOptOut')) {
+      // if (gsStorage.getOption('trackingOptOut')) {
+      if (true) {
       gsUtils.log(
         'gsAnalytics',
         'reportEvent aborted because tracking is disabled'
       );
       return;
     }
-    ga('send', 'event', category, action, label);
+    // ga('send', 'event', category, action, label);
   }
   function reportException(errorMessage) {
-    if (gsStorage.getOption('trackingOptOut')) {
+    // if (gsStorage.getOption('trackingOptOut')) {
+      if (true) {
       gsUtils.log(
         'gsAnalytics',
         'reportException aborted because tracking is disabled'
       );
       return;
     }
-    ga('send', 'exception', {
-      exDescription: errorMessage,
-      exFatal: false,
-    });
+    // ga('send', 'exception', {
+    //   exDescription: errorMessage,
+    //   exFatal: false,
+    // });
   }
   return {
     initAsPromised,
@@ -197,7 +205,9 @@ function loadGoogleAnalytics(i, s, o, g, r, a, m) {
 }
 
 function init() {
-  if (!gsStorage.getOption('trackingOptOut')) {
+  // gsStorage.setOptionAndSync('trackingOptOut',true);
+  // if (!gsStorage.getOption('trackingOptOut')) {
+    if (false) {
     loadGoogleAnalytics(
       window,
       document,
